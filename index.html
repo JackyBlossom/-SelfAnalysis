@@ -16,11 +16,12 @@
             </div>
             <div class="content">
                 <p class="description">
-                    MBTI理論に基づいた16の質問を通して、<br>
+                    MBTI理論に基づいた質問を通して、<br>
                     あなたの性格タイプを診断します。<br>
                     4つの指標（外向/内向、感覚/直観、思考/感情、判断/知覚）から<br>
                     16タイプのいずれかを判定します。<br>
                     <br>
+                    各質問に5段階で回答してください。<br>
                     転職活動やキャリア開発に役立ててください。
                 </p>
                 <button id="start-btn" class="btn btn-primary">診断を始める</button>
@@ -38,6 +39,7 @@
             <div class="content">
                 <h2 id="question-text" class="question-text"></h2>
                 <div id="answers" class="answers"></div>
+                <button id="back-btn" class="btn btn-back" style="display: none;">← 戻る</button>
             </div>
         </div>
 
@@ -50,6 +52,7 @@
                 <div id="result-type" class="result-type"></div>
                 <h2 id="result-title" class="result-title"></h2>
                 <p id="result-description" class="result-description"></p>
+                <div id="score-details" class="score-details"></div>
                 <div class="result-details">
                     <h3>あなたの強み</h3>
                     <ul id="result-strengths"></ul>

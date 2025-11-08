@@ -154,14 +154,89 @@ body {
     font-size: 1.1em;
     cursor: pointer;
     transition: all 0.3s ease;
-    text-align: left;
+    text-align: center;
     color: #333;
 }
 
 .answer-btn:hover {
     background: #e8e9ff;
     border-color: #667eea;
-    transform: translateX(5px);
+    transform: translateY(-2px);
+}
+
+/* 5段階評価ボタンのスタイル */
+.scale-btn {
+    padding: 18px;
+    font-size: 1.05em;
+}
+
+.scale-btn.strongly-agree {
+    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    color: white;
+    border-color: #43e97b;
+}
+
+.scale-btn.strongly-agree:hover {
+    background: linear-gradient(135deg, #3dd671 0%, #32e3cd 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(67, 233, 123, 0.4);
+}
+
+.scale-btn.agree {
+    background: #e8f5e9;
+    border-color: #81c784;
+    color: #2e7d32;
+}
+
+.scale-btn.agree:hover {
+    background: #c8e6c9;
+}
+
+.scale-btn.neutral {
+    background: #f5f5f5;
+    border-color: #bdbdbd;
+    color: #616161;
+}
+
+.scale-btn.neutral:hover {
+    background: #e0e0e0;
+}
+
+.scale-btn.disagree {
+    background: #ffebee;
+    border-color: #e57373;
+    color: #c62828;
+}
+
+.scale-btn.disagree:hover {
+    background: #ffcdd2;
+}
+
+.scale-btn.strongly-disagree {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+    border-color: #f5576c;
+}
+
+.scale-btn.strongly-disagree:hover {
+    background: linear-gradient(135deg, #ea83eb 0%, #eb4762 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(245, 87, 108, 0.4);
+}
+
+/* 戻るボタン */
+.btn-back {
+    margin-top: 20px;
+    padding: 12px 30px;
+    background: #f0f0f0;
+    color: #666;
+    font-size: 1em;
+    max-width: 150px;
+}
+
+.btn-back:hover {
+    background: #e0e0e0;
+    transform: translateY(-2px);
 }
 
 .result-type {
@@ -197,6 +272,56 @@ body {
     color: #555;
     margin-bottom: 30px;
     text-align: center;
+}
+
+/* スコア詳細表示 */
+.score-details {
+    background: #f8f9fa;
+    padding: 30px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+}
+
+.score-details h3 {
+    color: #667eea;
+    margin-bottom: 20px;
+    font-size: 1.3em;
+    text-align: center;
+}
+
+.score-bar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    gap: 10px;
+}
+
+.score-label {
+    min-width: 90px;
+    font-weight: bold;
+    color: #555;
+    font-size: 0.95em;
+}
+
+.score-progress {
+    flex: 1;
+    height: 25px;
+    background: #e0e0e0;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.score-fill {
+    height: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    transition: width 0.5s ease;
+}
+
+.score-percent {
+    min-width: 50px;
+    text-align: right;
+    font-weight: bold;
+    color: #667eea;
 }
 
 .result-details {

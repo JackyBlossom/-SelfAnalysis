@@ -1,4 +1,4 @@
-// MBTI形式の質問データ（4つの軸を測定）
+// MBTI形式の質問データ（5段階評価）
 // E/I: 外向性(Extraversion) vs 内向性(Introversion)
 // S/N: 感覚(Sensing) vs 直観(Intuition)
 // T/F: 思考(Thinking) vs 感情(Feeling)
@@ -7,122 +7,212 @@
 const questions = [
     // E/I 外向性 vs 内向性
     {
-        question: "休日の過ごし方として、より魅力的に感じるのはどちらですか？",
-        answers: [
-            { text: "友人や同僚と外出して、活発に活動する", dimension: "E" },
-            { text: "一人または親しい人とゆっくり過ごす", dimension: "I" }
-        ]
+        question: "あなたは社交的な集まりでエネルギーを得る方だ",
+        dimension: "E",
+        reverse: false
     },
     {
-        question: "新しいプロジェクトに取り組む時、あなたはどのように考えを整理しますか？",
-        answers: [
-            { text: "人と話しながら考えをまとめる", dimension: "E" },
-            { text: "一人で静かに考えを深める", dimension: "I" }
-        ]
+        question: "一人で過ごす時間が必要だと感じることが多い",
+        dimension: "I",
+        reverse: false
     },
     {
-        question: "仕事後のエネルギー回復方法として、より効果的なのはどちらですか？",
-        answers: [
-            { text: "人と会って話すことで元気になる", dimension: "E" },
-            { text: "一人の時間を持つことで充電される", dimension: "I" }
-        ]
+        question: "初対面の人とでもすぐに打ち解けられる",
+        dimension: "E",
+        reverse: false
     },
     {
-        question: "初対面の人との交流について、あなたに近いのはどちらですか？",
-        answers: [
-            { text: "積極的に話しかけ、すぐに打ち解けられる", dimension: "E" },
-            { text: "まず相手を観察し、慎重に関係を築く", dimension: "I" }
-        ]
+        question: "大人数よりも少人数での会話の方が好きだ",
+        dimension: "I",
+        reverse: false
+    },
+    {
+        question: "話しながら考えをまとめることが多い",
+        dimension: "E",
+        reverse: false
+    },
+    {
+        question: "行動する前にじっくり考えることを好む",
+        dimension: "I",
+        reverse: false
     },
 
     // S/N 感覚 vs 直観
     {
-        question: "情報を得る時、より信頼するのはどちらですか？",
-        answers: [
-            { text: "具体的な事実やデータ、実際の経験", dimension: "S" },
-            { text: "全体的なパターンや可能性、未来の展望", dimension: "N" }
-        ]
+        question: "具体的な事実やデータを重視する",
+        dimension: "S",
+        reverse: false
     },
     {
-        question: "仕事の説明を受ける際、理解しやすいのはどちらですか？",
-        answers: [
-            { text: "具体的な手順や詳細な説明", dimension: "S" },
-            { text: "全体像や目的、コンセプト", dimension: "N" }
-        ]
+        question: "物事の可能性や将来性に興味がある",
+        dimension: "N",
+        reverse: false
     },
     {
-        question: "問題解決において、より重視するのはどちらですか？",
-        answers: [
-            { text: "実績のある方法や現実的なアプローチ", dimension: "S" },
-            { text: "新しい視点や革新的なアイデア", dimension: "N" }
-        ]
+        question: "実用的で現実的な解決策を好む",
+        dimension: "S",
+        reverse: false
     },
     {
-        question: "日常の仕事において、より興味を感じるのはどちらですか？",
-        answers: [
-            { text: "現在の課題を着実に処理すること", dimension: "S" },
-            { text: "将来の可能性や新しいチャレンジ", dimension: "N" }
-        ]
+        question: "抽象的な概念やアイデアを考えるのが好きだ",
+        dimension: "N",
+        reverse: false
+    },
+    {
+        question: "詳細な説明や手順を好む",
+        dimension: "S",
+        reverse: false
+    },
+    {
+        question: "全体像や大きなビジョンを重視する",
+        dimension: "N",
+        reverse: false
     },
 
     // T/F 思考 vs 感情
     {
-        question: "意思決定をする際、より重視するのはどちらですか？",
-        answers: [
-            { text: "論理的な分析と客観的な基準", dimension: "T" },
-            { text: "人への影響や価値観との整合性", dimension: "F" }
-        ]
+        question: "意思決定する際、論理的分析を優先する",
+        dimension: "T",
+        reverse: false
     },
     {
-        question: "チームメンバーと意見が対立した時、あなたはどう対応しますか？",
-        answers: [
-            { text: "論理的に議論し、最適解を見つける", dimension: "T" },
-            { text: "相手の気持ちを理解し、調和を図る", dimension: "F" }
-        ]
+        question: "決断する時、人への影響を第一に考える",
+        dimension: "F",
+        reverse: false
     },
     {
-        question: "他者からフィードバックを受ける時、より価値を感じるのはどちらですか？",
-        answers: [
-            { text: "具体的な改善点や論理的な指摘", dimension: "T" },
-            { text: "励ましや共感的なサポート", dimension: "F" }
-        ]
+        question: "客観的で公平な判断を心がけている",
+        dimension: "T",
+        reverse: false
     },
     {
-        question: "あなたが大切にしているのはどちらですか？",
-        answers: [
-            { text: "公平性と効率性", dimension: "T" },
-            { text: "調和と人間関係", dimension: "F" }
-        ]
+        question: "他人の感情に敏感で共感しやすい",
+        dimension: "F",
+        reverse: false
+    },
+    {
+        question: "批判的思考が得意だ",
+        dimension: "T",
+        reverse: false
+    },
+    {
+        question: "調和を保つことを大切にする",
+        dimension: "F",
+        reverse: false
     },
 
     // J/P 判断 vs 知覚
     {
-        question: "仕事の進め方として、より好むのはどちらですか？",
-        answers: [
-            { text: "計画を立てて、スケジュール通りに進める", dimension: "J" },
-            { text: "柔軟に対応し、状況に応じて調整する", dimension: "P" }
-        ]
+        question: "計画を立ててから行動することを好む",
+        dimension: "J",
+        reverse: false
     },
     {
-        question: "プロジェクトの締め切りについて、あなたに近いのはどちらですか？",
-        answers: [
-            { text: "早めに完了させて余裕を持ちたい", dimension: "J" },
-            { text: "締め切り直前に集中して仕上げる", dimension: "P" }
-        ]
+        question: "柔軟に対応し、状況に応じて変更することを好む",
+        dimension: "P",
+        reverse: false
     },
     {
-        question: "日常生活において、より心地よいのはどちらですか？",
-        answers: [
-            { text: "予定が決まっていて、整理された状態", dimension: "J" },
-            { text: "選択肢が開かれていて、自由な状態", dimension: "P" }
-        ]
+        question: "締め切りよりも早めに物事を終わらせたい",
+        dimension: "J",
+        reverse: false
     },
     {
-        question: "新しい情報や変更について、あなたの反応はどちらに近いですか？",
-        answers: [
-            { text: "計画への影響を考え、調整が必要か検討する", dimension: "J" },
-            { text: "新しい可能性として前向きに受け入れる", dimension: "P" }
-        ]
+        question: "締め切り間際の方が集中できる",
+        dimension: "P",
+        reverse: false
+    },
+    {
+        question: "整理整頓された環境が好きだ",
+        dimension: "J",
+        reverse: false
+    },
+    {
+        question: "選択肢を開けておくことを好む",
+        dimension: "P",
+        reverse: false
+    },
+
+    // 追加の質問（より精度を高める）
+    {
+        question: "新しい人々と出会うことにワクワクする",
+        dimension: "E",
+        reverse: false
+    },
+    {
+        question: "深く考えることに時間を使うことが好きだ",
+        dimension: "I",
+        reverse: false
+    },
+    {
+        question: "経験に基づいて判断することが多い",
+        dimension: "S",
+        reverse: false
+    },
+    {
+        question: "革新的なアイデアに惹かれる",
+        dimension: "N",
+        reverse: false
+    },
+    {
+        question: "論理的な一貫性を重視する",
+        dimension: "T",
+        reverse: false
+    },
+    {
+        question: "人間関係の調和を優先する",
+        dimension: "F",
+        reverse: false
+    },
+    {
+        question: "To-Doリストを作成して管理することが好きだ",
+        dimension: "J",
+        reverse: false
+    },
+    {
+        question: "臨機応変に対応することが得意だ",
+        dimension: "P",
+        reverse: false
+    },
+    {
+        question: "グループ活動に積極的に参加する",
+        dimension: "E",
+        reverse: false
+    },
+    {
+        question: "一人で問題を解決することを好む",
+        dimension: "I",
+        reverse: false
+    },
+    {
+        question: "現実的で実践的なアプローチを取る",
+        dimension: "S",
+        reverse: false
+    },
+    {
+        question: "理論的な枠組みを考えるのが楽しい",
+        dimension: "N",
+        reverse: false
+    },
+    {
+        question: "効率性を最優先する",
+        dimension: "T",
+        reverse: false
+    },
+    {
+        question: "他者の気持ちを理解しようと努める",
+        dimension: "F",
+        reverse: false
+    },
+    {
+        question: "事前に計画を立てることで安心する",
+        dimension: "J",
+        reverse: false
+    },
+    {
+        question: "自発的で即興的な行動を好む",
+        dimension: "P",
+        reverse: false
     }
 ];
 
@@ -436,6 +526,7 @@ const personalityTypes = {
 
 // アプリケーションの状態管理
 let currentQuestionIndex = 0;
+let answers = []; // 各質問の回答を保存（戻る機能のため）
 let scores = {
     E: 0, I: 0,  // 外向 vs 内向
     S: 0, N: 0,  // 感覚 vs 直観
@@ -449,6 +540,7 @@ const questionScreen = document.getElementById('question-screen');
 const resultScreen = document.getElementById('result-screen');
 const startBtn = document.getElementById('start-btn');
 const restartBtn = document.getElementById('restart-btn');
+const backBtn = document.getElementById('back-btn');
 const questionText = document.getElementById('question-text');
 const answersDiv = document.getElementById('answers');
 const currentQuestionSpan = document.getElementById('current-question');
@@ -458,6 +550,9 @@ const progressFill = document.getElementById('progress-fill');
 // イベントリスナー
 startBtn.addEventListener('click', startQuiz);
 restartBtn.addEventListener('click', resetQuiz);
+if (backBtn) {
+    backBtn.addEventListener('click', goBack);
+}
 
 // 診断開始
 function startQuiz() {
@@ -482,20 +577,40 @@ function showQuestion() {
     const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
     progressFill.style.width = progress + '%';
 
-    // 回答選択肢を生成（2択）
+    // 戻るボタンの表示/非表示
+    if (backBtn) {
+        backBtn.style.display = currentQuestionIndex > 0 ? 'inline-block' : 'none';
+    }
+
+    // 5段階評価の選択肢を生成
     answersDiv.innerHTML = '';
-    question.answers.forEach((answer, index) => {
+
+    const scaleLabels = [
+        { text: '非常に同意する', value: 2, class: 'strongly-agree' },
+        { text: 'やや同意する', value: 1, class: 'agree' },
+        { text: 'どちらでもない', value: 0, class: 'neutral' },
+        { text: 'やや同意しない', value: -1, class: 'disagree' },
+        { text: '非常に同意しない', value: -2, class: 'strongly-disagree' }
+    ];
+
+    scaleLabels.forEach((option) => {
         const button = document.createElement('button');
-        button.className = 'answer-btn';
-        button.textContent = answer.text;
-        button.addEventListener('click', () => selectAnswer(answer.dimension));
+        button.className = 'answer-btn scale-btn ' + option.class;
+        button.textContent = option.text;
+        button.addEventListener('click', () => selectAnswer(option.value));
         answersDiv.appendChild(button);
     });
 }
 
 // 回答選択
-function selectAnswer(dimension) {
-    scores[dimension]++;
+function selectAnswer(value) {
+    const question = questions[currentQuestionIndex];
+
+    // 回答を保存
+    answers[currentQuestionIndex] = value;
+
+    // スコアを計算
+    scores[question.dimension] += value;
 
     currentQuestionIndex++;
 
@@ -503,6 +618,23 @@ function selectAnswer(dimension) {
         showQuestion();
     } else {
         showResult();
+    }
+}
+
+// 戻る機能
+function goBack() {
+    if (currentQuestionIndex > 0) {
+        currentQuestionIndex--;
+
+        // 前の回答を取り消す
+        const previousQuestion = questions[currentQuestionIndex];
+        const previousAnswer = answers[currentQuestionIndex];
+
+        if (previousAnswer !== undefined) {
+            scores[previousQuestion.dimension] -= previousAnswer;
+        }
+
+        showQuestion();
     }
 }
 
@@ -537,6 +669,84 @@ function showResult() {
         );
     }
 
+    // 各指標のスコア詳細を表示
+    const scoreDetailsElement = document.getElementById('score-details');
+    if (scoreDetailsElement) {
+        const totalE = Math.abs(scores.E) + Math.abs(scores.I);
+        const totalS = Math.abs(scores.S) + Math.abs(scores.N);
+        const totalT = Math.abs(scores.T) + Math.abs(scores.F);
+        const totalJ = Math.abs(scores.J) + Math.abs(scores.P);
+
+        const percentE = totalE > 0 ? Math.round((Math.abs(scores.E) / totalE) * 100) : 50;
+        const percentI = 100 - percentE;
+        const percentS = totalS > 0 ? Math.round((Math.abs(scores.S) / totalS) * 100) : 50;
+        const percentN = 100 - percentS;
+        const percentT = totalT > 0 ? Math.round((Math.abs(scores.T) / totalT) * 100) : 50;
+        const percentF = 100 - percentT;
+        const percentJ = totalJ > 0 ? Math.round((Math.abs(scores.J) / totalJ) * 100) : 50;
+        const percentP = 100 - percentJ;
+
+        scoreDetailsElement.innerHTML = `
+            <h3>各指標の詳細スコア</h3>
+            <div class="score-bar">
+                <span class="score-label">外向 (E)</span>
+                <div class="score-progress">
+                    <div class="score-fill" style="width: ${percentE}%"></div>
+                </div>
+                <span class="score-percent">${percentE}%</span>
+            </div>
+            <div class="score-bar">
+                <span class="score-label">内向 (I)</span>
+                <div class="score-progress">
+                    <div class="score-fill" style="width: ${percentI}%"></div>
+                </div>
+                <span class="score-percent">${percentI}%</span>
+            </div>
+            <div class="score-bar">
+                <span class="score-label">感覚 (S)</span>
+                <div class="score-progress">
+                    <div class="score-fill" style="width: ${percentS}%"></div>
+                </div>
+                <span class="score-percent">${percentS}%</span>
+            </div>
+            <div class="score-bar">
+                <span class="score-label">直観 (N)</span>
+                <div class="score-progress">
+                    <div class="score-fill" style="width: ${percentN}%"></div>
+                </div>
+                <span class="score-percent">${percentN}%</span>
+            </div>
+            <div class="score-bar">
+                <span class="score-label">思考 (T)</span>
+                <div class="score-progress">
+                    <div class="score-fill" style="width: ${percentT}%"></div>
+                </div>
+                <span class="score-percent">${percentT}%</span>
+            </div>
+            <div class="score-bar">
+                <span class="score-label">感情 (F)</span>
+                <div class="score-progress">
+                    <div class="score-fill" style="width: ${percentF}%"></div>
+                </div>
+                <span class="score-percent">${percentF}%</span>
+            </div>
+            <div class="score-bar">
+                <span class="score-label">判断 (J)</span>
+                <div class="score-progress">
+                    <div class="score-fill" style="width: ${percentJ}%"></div>
+                </div>
+                <span class="score-percent">${percentJ}%</span>
+            </div>
+            <div class="score-bar">
+                <span class="score-label">知覚 (P)</span>
+                <div class="score-progress">
+                    <div class="score-fill" style="width: ${percentP}%"></div>
+                </div>
+                <span class="score-percent">${percentP}%</span>
+            </div>
+        `;
+    }
+
     document.getElementById('result-title').textContent = `${result.name} (${result.nickname})`;
     document.getElementById('result-description').textContent = result.description;
 
@@ -567,6 +777,7 @@ function showResult() {
 // リセット
 function resetQuiz() {
     currentQuestionIndex = 0;
+    answers = [];
     scores = {
         E: 0, I: 0,
         S: 0, N: 0,
