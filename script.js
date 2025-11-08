@@ -582,24 +582,50 @@ function showQuestion() {
         backBtn.style.display = currentQuestionIndex > 0 ? 'inline-block' : 'none';
     }
 
-    // 5段階評価の選択肢を生成
+    // 7段階評価の選択肢を生成（円形）
     answersDiv.innerHTML = '';
 
-    const scaleLabels = [
-        { text: '非常に同意する', value: 2, class: 'strongly-agree' },
-        { text: 'やや同意する', value: 1, class: 'agree' },
-        { text: 'どちらでもない', value: 0, class: 'neutral' },
-        { text: 'やや同意しない', value: -1, class: 'disagree' },
-        { text: '非常に同意しない', value: -2, class: 'strongly-disagree' }
+    // ラベルとスケールのコンテナを作成
+    const scaleContainer = document.createElement('div');
+    scaleContainer.className = 'scale-container';
+
+    // 左側のラベル
+    const leftLabel = document.createElement('div');
+    leftLabel.className = 'scale-label-left';
+    leftLabel.textContent = 'そう思う';
+    scaleContainer.appendChild(leftLabel);
+
+    // 7段階の円形ボタン
+    const scaleOptions = [
+        { value: 3, size: 'xl' },   // 非常にそう思う
+        { value: 2, size: 'lg' },   // そう思う
+        { value: 1, size: 'md' },   // ややそう思う
+        { value: 0, size: 'sm' },   // どちらでもない
+        { value: -1, size: 'md' },  // ややそう思わない
+        { value: -2, size: 'lg' },  // そう思わない
+        { value: -3, size: 'xl' }   // 全くそう思わない
     ];
 
-    scaleLabels.forEach((option) => {
+    const buttonsContainer = document.createElement('div');
+    buttonsContainer.className = 'scale-buttons';
+
+    scaleOptions.forEach((option) => {
         const button = document.createElement('button');
-        button.className = 'answer-btn scale-btn ' + option.class;
-        button.textContent = option.text;
+        button.className = 'circle-btn circle-' + option.size;
+        button.setAttribute('aria-label', `スコア: ${option.value}`);
         button.addEventListener('click', () => selectAnswer(option.value));
-        answersDiv.appendChild(button);
+        buttonsContainer.appendChild(button);
     });
+
+    scaleContainer.appendChild(buttonsContainer);
+
+    // 右側のラベル
+    const rightLabel = document.createElement('div');
+    rightLabel.className = 'scale-label-right';
+    rightLabel.textContent = 'そう思わない';
+    scaleContainer.appendChild(rightLabel);
+
+    answersDiv.appendChild(scaleContainer);
 }
 
 // 回答選択
